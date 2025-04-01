@@ -4,12 +4,11 @@ import os
 from flask import Flask, jsonify
 from io import BytesIO
 from fuzzywuzzy import process
-# from markupsafe import escape
 from supabase import create_client
 from dotenv import load_dotenv
 
 
-load_dotenv("../.env")
+load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_API_KEY = os.getenv("SUPABASE_API_KEY")

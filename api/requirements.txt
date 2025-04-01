@@ -1,6 +1,0 @@
-Flask
-fuzzywuzzy
-numpy
-pandas
-scikit-learn
-python-Levenshtein
