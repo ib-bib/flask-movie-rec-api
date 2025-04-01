@@ -8,7 +8,9 @@ from supabase import create_client
 from dotenv import load_dotenv
 
 
-load_dotenv()
+# Load .env only in development (not in Vercel production)
+if os.getenv("VERCEL") is None:
+    load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_API_KEY = os.getenv("SUPABASE_API_KEY")
