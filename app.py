@@ -13,33 +13,28 @@ SUPABASE_API_KEY = os.getenv("SUPABASE_API_KEY")
 
 supabase = create_client(SUPABASE_URL, SUPABASE_API_KEY)
 
-# The name of the public bucket where the models are stored
 bucket_name = "models"
 
-# Function to fetch the model file from Supabase and load it with pickle
 def load_model_from_supabase(file_path: str):
-    # Fetch the file from the public bucket
     response = supabase.storage.from_(bucket_name).download(file_path)
-    
-    # Check if the file was fetched successfully
     if response:
         print(f"Successfully fetched {file_path}")
-        # Load the model (assuming it's a pickle file)
         model = pickle.load(BytesIO(response))
         return model
     else:
         print(f"Failed to fetch {file_path}")
         return None
 
-# Example to load your models
+
 cf_model = load_model_from_supabase("cf_model.pkl")
 cbf_model = load_model_from_supabase("cbf_model.pkl")
 
-# Check if models were loaded successfully
+
 if cf_model:
     print("Collaborative Filtering model loaded!")
 if cbf_model:
     print("Content-based Filtering model loaded!")
+
 
 app = Flask(__name__)
 
